@@ -41,3 +41,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.sln
+*.suo
+VisualStudioTest/VisualStudioTest/opencv_lib.hpp
+VisualStudioTest/VisualStudioTest/stdafx.h
+VisualStudioTest/VisualStudioTest/targetver.h
+*.vcxproj
+*.filters
+VisualStudioTest/VisualStudioTest/Movie.avi
+VisualStudioTest/VisualStudioTest/stdafx.cpp
