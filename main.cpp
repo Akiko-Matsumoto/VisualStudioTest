@@ -15,7 +15,7 @@ void ConvertToGray(Mat img_rgb[ColorN], Mat img_gray[ColorN])
 int _tmain(int argc, _TCHAR* argv[])
 {
 	CvScalar average;
-	Mat frame, img_gray[3], img_rgb[3], img_rgb_3[3];	// 画像リソース宣言
+	Mat frame, img_gray[ColorN], img_rgb[ColorN], img_rgb_3[ColorN];	// 画像リソース宣言
 	VideoCapture src(-1);							// 映像取得（カメラ映像）
 
 	if (src.isOpened() == 0){ cout << "映像が取得できません。\n" << endl; waitKey(0); return -1; }
