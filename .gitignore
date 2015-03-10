@@ -43,10 +43,10 @@ Temporary Items
 .apdisk
 *.sln
 *.suo
-VisualStudioTest/VisualStudioTest/opencv_lib.hpp
-VisualStudioTest/VisualStudioTest/stdafx.h
-VisualStudioTest/VisualStudioTest/targetver.h
+opencv_lib.hpp
+stdafx.h
+targetver.h
 *.vcxproj
 *.filters
-VisualStudioTest/VisualStudioTest/Movie.avi
-VisualStudioTest/VisualStudioTest/stdafx.cpp
+Movie.avi
+stdafx.cpp
