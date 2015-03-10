@@ -3,9 +3,9 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CvScalar average;
+	Scalar average;
 	Mat frame, img_rgb[3], img_rgb_3[3];			// 画像リソース宣言
-	VideoCapture src(-1);							// 映像取得（カメラ映像）
+	VideoCapture src("Movie.avi");							// 映像取得（カメラ映像）
 
 	if (src.isOpened() == 0){ cout << "映像が取得できません。\n" << endl; waitKey(0); return -1; }
 
