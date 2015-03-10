@@ -1,11 +1,13 @@
 ﻿#include "stdafx.h"
 #include "opencv_lib.hpp"							// OpenCVヘッダ
 
+#define ColorN 3
+
 // グレースケール変換
-void ConvertToGray(Mat img_rgb[3], Mat img_gray[3])
+void ConvertToGray(Mat img_rgb[ColorN], Mat img_gray[ColorN])
 {
 	int i;
-	for (i=0;i<3;i++){
+	for (i=0;i<ColorN;i++){
 		cvtColor(img_rgb[i], img_gray[i], CV_BGR2GRAY);
 	}
 }
