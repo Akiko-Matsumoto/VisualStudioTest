@@ -1,12 +1,14 @@
 ﻿#include "stdafx.h"
 #include "opencv_lib.hpp"							// OpenCVヘッダ
 
+// 正規化する関数(入力:src 出力:dst)
 void normalize_255(Mat src[], Mat dst[]){
 
 	for (int i = 0; i < 3; i++){
 		normalize(src[i], dst[i], 0, 255, NORM_MINMAX);
 	}
 }
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Scalar average;
@@ -41,6 +43,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		mixChannels(&img_rgb[1], 1, &img_rgb_3[1], 1, from_to_g, 1);	// 緑
 		mixChannels(&img_rgb[0], 1, &img_rgb_3[0], 1, from_to_b, 1);	// 青
 
+		// 正規化
 		normalize_255(img_rgb, img_rgb);
 
 		imshow("入力映像", frame);
