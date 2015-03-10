@@ -1,6 +1,5 @@
 ﻿#include "stdafx.h"
 #include "opencv_lib.hpp"							// OpenCVヘッダ
-#include <algorithm>
 
 #define ColorN 3
 
@@ -13,22 +12,10 @@ void ConvertToGray(Mat img_rgb[ColorN], Mat img_gray[ColorN])
 	}
 }
 
-void GetMaxValue(Mat input_ar[ColorN], Mat max[ColorN]){
-
-	int i;
-	Mat tmp_max;
-
-	for (i=0;i<3;i++){
-		reduce(input_ar[i], tmp_max, 0, CV_REDUCE_MAX);
-		reduce(tmp_max, max[i], 1, CV_REDUCE_MAX);
-	}
-}
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	CvScalar average;
-	Mat max_val[ColorN];
-	Mat frame, img_gray[ColorN], img_rgb[ColorN], img_rgb_3[ColorN];	// 画像リソース宣言
+	Mat frame, img_gray[3], img_rgb[3], img_rgb_3[3];	// 画像リソース宣言
 	VideoCapture src(-1);							// 映像取得（カメラ映像）
 
 	if (src.isOpened() == 0){ cout << "映像が取得できません。\n" << endl; waitKey(0); return -1; }
@@ -71,9 +58,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		int g_ave = (int)average.val[1];
 		int b_ave = (int)average.val[0];
 		printf("RGB平均値 = (%3d,%3d,%3d)：", r_ave, g_ave, b_ave); // 各成分の平均値
-
-		GetMaxValue(img_gray, max_val);
-		printf("RGB最大値 = (%3d,%3d,%3d)：", max_val[2], max_val[1], max_val[0]);
 
 		// 各平均値を比較し最大成分を表示する
 		if		((r_ave > g_ave) && (r_ave > b_ave)) cout << "赤成分が多い\n" << endl;
