@@ -12,9 +12,17 @@ void ConvertToGray(Mat img_rgb[ColorN], Mat img_gray[ColorN])
 	}
 }
 
+// 正規化する関数(入力:src 出力:dst)
+void normalize_255(Mat src[], Mat dst[]){
+
+	for (int i = 0; i < 3; i++){
+		normalize(src[i], dst[i], 0, 255, NORM_MINMAX);
+	}
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CvScalar average;
+	Scalar average;
 	Mat frame, img_gray[ColorN], img_rgb[ColorN], img_rgb_3[ColorN];	// 画像リソース宣言
 	VideoCapture src(-1);							// 映像取得（カメラ映像）
 
@@ -47,6 +55,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		mixChannels(&img_rgb[0], 1, &img_rgb_3[0], 1, from_to_b, 1);	// 青
 
 		ConvertToGray(img_rgb_3, img_gray);			// グレースケール変換
+
+		// 正規化
+		normalize_255(img_rgb, img_rgb);
 
 		imshow("入力映像", frame);
 		imshow("赤チャンネル", img_gray[2]);
