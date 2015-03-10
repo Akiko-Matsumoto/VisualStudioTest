@@ -1,19 +1,10 @@
 ﻿#include "stdafx.h"
 #include "opencv_lib.hpp"							// OpenCVヘッダ
 
-// グレースケール変換
-void ConvertToGray(Mat img_rgb[3], Mat img_gray[3])
-{
-	int i;
-	for (i=0;i<3;i++){
-		cvtColor(img_rgb[i], img_gray[i], CV_BGR2GRAY);
-	}
-}
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	CvScalar average;
-	Mat frame, img_gray[3], img_rgb[3], img_rgb_3[3];	// 画像リソース宣言
+	Mat frame, img_rgb[3], img_rgb_3[3];			// 画像リソース宣言
 	VideoCapture src(-1);							// 映像取得（カメラ映像）
 
 	if (src.isOpened() == 0){ cout << "映像が取得できません。\n" << endl; waitKey(0); return -1; }
@@ -44,12 +35,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		mixChannels(&img_rgb[1], 1, &img_rgb_3[1], 1, from_to_g, 1);	// 緑
 		mixChannels(&img_rgb[0], 1, &img_rgb_3[0], 1, from_to_b, 1);	// 青
 
-		ConvertToGray(img_rgb_3, img_gray);			// グレースケール変換
-
 		imshow("入力映像", frame);
-		imshow("赤チャンネル", img_gray[2]);
-		imshow("緑チャンネル", img_gray[1]);
-		imshow("青チャンネル", img_gray[0]);
+		imshow("赤チャンネル", img_rgb_3[2]);
+		imshow("緑チャンネル", img_rgb_3[1]);
+		imshow("青チャンネル", img_rgb_3[0]);
 
 		average = mean(frame);						// チャンネルごとのピクセル平均値
 		int r_ave = (int)average.val[2];
